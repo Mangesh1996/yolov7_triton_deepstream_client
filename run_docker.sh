@@ -15,7 +15,8 @@ fi
 #Check if the Docker image exists
 if docker image inspect "$docker_image" --format="Docker image found."; then
     echo "Proceeding with execution..."
-for ((i=0; i<num; i++)); do
+for ((i=0; i<num; i++)); 
+    do
     docker run -it  -d  --rm --gpus all --network host \
     -v $PWD:/opt/nvidia/deepstream/deepstream-6.1/sources/yolov7-triton-deepstream   -e XAUTHORITY=$XAUTHORITY -v $XAUTHORITY:$XAUTHORITY    deepstream_triton6.1:001  python3 multiple_input_deepstream.py -f file:///opt/nvidia/deepstream/deepstream-6.1/sources/yolov7-triton-deepstream/indian_plates004.mp4 --port $i
 done
